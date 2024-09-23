@@ -1,0 +1,766 @@
+/* グローバルスタイル */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+header, footer {
+    background-color: #fff;
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header .service-name {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* ロゴとテキストの間に適切なスペースを追加 */
+}
+
+header .service-name img {
+    max-height: 30px;
+    margin: 0; /* 余分なマージンを削除 */
+}
+
+header h1, footer p {
+    margin: 0;
+}
+
+aside {
+    width: 250px;
+    background-color: #fff;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+aside .service-name {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+aside .service-name img {
+    width: 30px; /* 高さと同じ幅を設定 */
+    height: 30px; /* 高さを固定 */
+    margin-right: 10px;
+    object-fit: cover; /* 画像を正方形に収める */
+}
+
+aside .user-info {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
+aside .user-info img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+aside .user-info div {
+    font-size: 0.9rem;
+}
+
+aside nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+aside nav ul li {
+    scroll-margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+aside nav ul li a {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 4px;
+    margin: 0 1rem;
+}
+
+aside nav ul li a:hover, aside nav ul li a.active {
+    background-color: #eef2ff;
+    color: #007bff;
+}
+
+aside nav ul li a .icon {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+main {
+    margin-left: 250px;
+    padding: 1rem;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid #007bff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 0.1rem;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.button-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid #007bff;
+    color: #007bff;
+    background-color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 0.875rem; /* フォントサイズを小さく調整 */
+    cursor: pointer;
+    height: 2.2rem;
+}
+
+.button-link:hover {
+    background-color: #eef2ff;
+    color: #0056b3;
+}
+
+.button-link .icon {
+    margin-right: 0.2rem; /* マージンを小さく調整 */
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    margin-left: 0.2rem;
+    width: 1rem;  /* アイコンの幅を小さく調整 */
+    height: 1rem;  /* アイコンの高さを小さく調整 */
+    vertical-align: middle; /* アイコンの垂直位置を調整 */
+}
+.button-link-delete {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid #dc3545;
+    color: #dc3545;
+    background-color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 0.875rem;
+    cursor: pointer;
+    height: 2.2rem;
+}
+
+.button-link-delete:hover {
+    background-color: #f8d7da;
+    color: #c82333;
+}
+
+.button-link-delete .icon {
+    margin-right: 0.2rem; /* マージンを小さく調整 */
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    margin-left: 0.2rem;
+    width: 1rem;  /* アイコンの幅を小さく調整 */
+    height: 1rem;  /* アイコンの高さを小さく調整 */
+    vertical-align: middle; /* アイコンの垂直位置を調整 */
+}
+/* div要素の背景色をクリアに設定 */
+.save-button {
+    background-color: transparent; /* 背景色を透明に */
+}
+
+/* ボタン自体のスタイルはそのまま */
+.save-button button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.save-button button:hover {
+    background-color: #0056b3;
+}
+
+.cancel-button {
+    margin-right: 0.3rem; /* マージンを小さく調整 */
+    margin-top: 0.5rem;
+    margin-bottom: 0.3rem;
+    margin-left: 0.3rem;
+    background-color: #ff8800; /* オレンジ色に設定 */
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-button:hover {
+    background-color: #cc7000; /* ホバー時の色を調整 */
+}
+
+
+.input-group {
+    margin-bottom: 0.3rem;
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+    margin-top: 0.3rem;
+}
+
+input[type="text"], input[type="password"], textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    margin-top: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+input[type="text"]:hover, input[type="password"]:hover, textarea:hover {
+    border-color: #80bdff;
+}
+
+input[type="text"].error, input[type="password"].error, textarea.error {
+    border-color: #dc3545;
+}
+
+input[type="text"].error:focus, input[type="password"].error:focus, textarea.error:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 5px rgba(220, 53, 69, 0.25);
+}
+input[type="email"], input[type="password"], textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    margin-top: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+input[type="email"]:focus, input[type="password"]:focus, textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+input[type="email"]:hover, input[type="password"]:hover, textarea:hover {
+    border-color: #80bdff;
+}
+
+input[type="email"].error, input[type="password"].error, textarea.error {
+    border-color: #dc3545;
+}
+
+input[type="email"].error:focus, input[type="password"].error:focus, textarea.error:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 5px rgba(220, 53, 69, 0.25);
+}
+input[type="number"], input[type="password"], textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    margin-top: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+input[type="number"]:focus, input[type="password"]:focus, textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+input[type="number"]:hover, input[type="password"]:hover, textarea:hover {
+    border-color: #80bdff;
+}
+
+input[type="number"].error, input[type="password"].error, textarea.error {
+    border-color: #dc3545;
+}
+
+input[type="number"].error:focus, input[type="password"].error:focus, textarea.error:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 5px rgba(220, 53, 69, 0.25);
+}
+.file-upload-section {
+    margin-top: 1rem;
+}
+
+.dropzone {
+    border: 2px dashed #007bff;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.dropzone:hover {
+    background-color: #eef2ff;
+}
+
+.dropzone input[type="file"] {
+    display: none;
+}
+
+.dropzone p {
+    margin: 0;
+    color: #007bff;
+    font-size: 1rem;
+}
+
+.dropzone span {
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+img {
+    display: block;
+    margin-top: 10px;
+    width: 100px;
+    border-radius: 4px;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.actions button {
+    margin-right: 1rem;
+}
+
+.actions button:last-child {
+    margin-right: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+table th, table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table tr:hover {
+    background-color: #f1f3f5;
+}
+
+.table-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.table-actions .button-link {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+.table-actions .button-link .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+}
+/* 特定のコンポーネントスタイル */
+.ChatbotList, .knowledge-list {
+    margin-top: 2rem;
+}
+
+.ChatbotList table, .knowledge-list table {
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.ChatbotList table th, .knowledge-list table th {
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+}
+
+.ChatbotList table tr:hover, .knowledge-list table tr:hover {
+    background-color: #eef2ff;
+}
+
+.ChatbotList table td, .knowledge-list table td {
+    border-right: 1px solid #ddd;
+}
+
+.ChatbotList table td:last-child, .knowledge-list table td:last-child {
+    border-right: none;
+}
+
+.ChatbotList table th:last-child, .knowledge-list table th:last-child {
+    border-right: none;
+}
+
+.blog-generator {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.input-section, .output-section {
+    flex: 1;
+}
+
+.copy-section {
+    display: flex;
+    align-items: center;
+}
+
+.copy-button {
+    display: inline-flex; /* flexからinline-flexに変更 */
+    align-items: center;
+    background-color: #f4f6f8;
+    padding: 0.3rem 0.5rem; /* 他のボタンと統一 */
+    height: 2.2rem;
+    font-size: 0.875rem;
+    border-radius: 4px; /* 4pxに変更して統一 */
+    border: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.copy-button:hover {
+    background-color: #eef2ff;
+}
+
+.copy-button img {
+    margin-right: 0.2rem;
+    width: 1rem;
+    height: 1rem;
+    vertical-align: middle;
+}
+
+.copied-feedback {
+    margin-left: 5px;
+    color: #007bff;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle; /* アイコンとテキストが同じ高さに表示されるように調整 */
+}
+
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f4f6f8;
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px; /* 左右に少し余白を追加 */
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+}
+
+.chat-header img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.chat-header h2 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.chat-header .chat-info {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    color: #777;
+    font-size: 14px;
+}
+
+.messages-container {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.chat-message {
+    max-width: 60%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    word-break: break-word; /* 長い単語が折り返されるように追加 */
+}
+
+.chat-message.user {
+    align-self: flex-end;
+    background-color: #007bff;
+    color: #ffffff;
+    border-radius: 15px 15px 0 15px;
+    margin-right: 10px;
+    text-align: left; /* 右揃えでもテキストは左揃えに */
+}
+
+.chat-message.bot {
+    align-self: flex-start;
+    background-color: #e5e5ea;
+    color: #333333;
+    border-radius: 15px 15px 15px 0;
+    margin-left: 10px;
+    text-align: left;
+}
+
+.chat-input-container {
+    display: flex;
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+.chat-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    font-size: 10px;
+    height: 40px;
+}
+
+.chat-input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.chat-send-button {
+    height: 40px;
+    padding: 0 10px;
+    margin-left: 0.6rem;
+    background-color: #007bff;
+    border: none;
+    color: #ffffff;
+    border-radius: 10px 10px 10px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-send-button:hover {
+    background-color: #0056b3;
+}
+
+.chat-send-button .icon {
+    width: 20px;
+    height: 20px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end; /* 右揃えに変更 */
+    align-items: center;
+    margin-top: 1rem;
+    gap: 1rem; /* ボタン間のスペースを追加 */
+}
+
+.nav-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    border: none; /* ボーダーをなくす */
+    color: #007bff;
+    background-color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.nav-button:hover {
+    background-color: #eef2ff;
+    color: #0056b3;
+}
+
+.nav-button .icon {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 0.5rem; /* ボタン間のスペースを追加 */
+}
+
+.pagination span {
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #6c757d; /* グレー色に変更 */
+    border-radius: 4px;
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.pagination span:hover {
+    background-color: #e2e3e5; /* グレー色に変更 */
+}
+
+.pagination .active {
+    background-color: #6c757d; /* グレー色に変更 */
+    color: #fff;
+    border-color: #6c757d; /* グレー色に変更 */
+}
+
+/* EditorとBulletinBoard用のスタイル */
+.editor {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 4px;
+    background-color: #fff;
+    margin-bottom: 2rem;
+}
+
+.toolbar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.posts {
+    margin-top: 2rem;
+}
+
+.post {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+/* 画像アップロード用のスタイル */
+.file-upload-section {
+    margin-top: 1rem;
+}
+
+.dropzone {
+    border: 2px dashed #007bff;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.dropzone:hover {
+    background-color: #eef2ff;
+}
+
+.dropzone input[type="file"] {
+    display: none;
+}
+
+.dropzone p {
+    margin: 0;
+    color: #007bff;
+    font-size: 1rem;
+}
+
+.dropzone span {
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.uploaded-file {
+    margin-top: 1rem;
+    margin-bottom: 1rem; /* 下部に余白を追加 */
+    font-size: 1rem;
+    color: #333;
+}
+
+
+img {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 1rem; /* 下部に余白を追加 */
+    width: 100px;
+    border-radius: 4px;
+}
