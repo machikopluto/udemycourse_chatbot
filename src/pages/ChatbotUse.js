@@ -19,7 +19,25 @@ const ChatbotUse = () => {
     if (bot) {
       setChatbot(bot);
     }
+
+    // Load chat history from localStorage
+    const storedMessages = localStorage.getItem(`chat_history_${id}`);
+    if (storedMessages) {
+      try {
+        const parsedMessages = JSON.parse(storedMessages);
+        setMessages(parsedMessages);
+      } catch (error) {
+        console.error("Error loading chat history:", error);
+      }
+    }
   }, [id]);
+
+  // Save chat history to localStorage whenever messages change
+  useEffect(() => {
+    if (messages.length > 0) {
+      localStorage.setItem(`chat_history_${id}`, JSON.stringify(messages));
+    }
+  }, [messages, id]);
 
   const chatbotID = window.location.href
     .split("/")
@@ -82,12 +100,22 @@ const ChatbotUse = () => {
     setTimeout(() => setIsCopied(false), 2500);
   };
 
+  const handleClearHistory = () => {
+    if (window.confirm("会話履歴をクリアしますか？この操作は元に戻せません。")) {
+      setMessages([]);
+      localStorage.removeItem(`chat_history_${id}`);
+    }
+  };
+
   return (
     <div className="chat-container">
       <div className="chat-header">
         <img src={userIcon} alt="User Icon" />
         <h2>会話 {chatbot.name}</h2>
         <div className="chat-info">
+          <button onClick={handleClearHistory} className="nav-button clear-history-button">
+            履歴をクリア
+          </button>
           <Link to={`/chatbot-detail/${id}`} className="nav-button">
             設定する
           </Link>
