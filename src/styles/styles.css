@@ -764,3 +764,175 @@ img {
     width: 100px;
     border-radius: 4px;
 }
+
+/* Modal overlay and content */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 400px;
+    max-width: 90%;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.history-name-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.history-name-input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.save-button, .cancel-button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.save-button {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.save-button:hover {
+    background-color: #0056b3;
+}
+
+.cancel-button {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.cancel-button:hover {
+    background-color: #5a6268;
+}
+
+/* History sidebar */
+.history-sidebar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 350px;
+    background-color: #fff;
+    border-left: 1px solid #ddd;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    padding: 1.5rem;
+    z-index: 999;
+}
+
+.history-sidebar h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-size: 1.25rem;
+}
+
+.no-history {
+    color: #6c757d;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.history-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.history-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f8f9fa;
+    transition: box-shadow 0.3s ease;
+}
+
+.history-item:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.history-info {
+    margin-bottom: 0.75rem;
+}
+
+.history-info strong {
+    display: block;
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.history-info small {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+.history-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.load-button, .delete-button {
+    flex: 1;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: background-color 0.3s ease;
+}
+
+.load-button {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.load-button:hover {
+    background-color: #0056b3;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}

@@ -12,6 +12,11 @@ const ChatbotUse = () => {
   const [input, setInput] = useState("");
   const [chatbot, setChatbot] = useState({});
   const [isCopied, setIsCopied] = useState(false);
+  const [chatHistories, setChatHistories] = useState([]);
+  const [currentHistoryId, setCurrentHistoryId] = useState(null);
+  const [historyName, setHistoryName] = useState("");
+  const [showSaveDialog, setShowSaveDialog] = useState(false);
+  const [showHistoryList, setShowHistoryList] = useState(false);
 
   useEffect(() => {
     const storedChatbots = JSON.parse(localStorage.getItem("chatbots")) || [];
@@ -19,7 +24,13 @@ const ChatbotUse = () => {
     if (bot) {
       setChatbot(bot);
     }
+    loadChatHistories();
   }, [id]);
+
+  const loadChatHistories = () => {
+    const histories = JSON.parse(localStorage.getItem(`chatHistories_${id}`)) || [];
+    setChatHistories(histories);
+  };
 
   const chatbotID = window.location.href
     .split("/")
@@ -82,12 +93,90 @@ const ChatbotUse = () => {
     setTimeout(() => setIsCopied(false), 2500);
   };
 
+  const handleSaveHistory = () => {
+    if (messages.length === 0) {
+      alert("保存するメッセージがありません。");
+      return;
+    }
+    setShowSaveDialog(true);
+  };
+
+  const saveHistory = () => {
+    if (!historyName.trim()) {
+      alert("履歴に名前を付けてください。");
+      return;
+    }
+
+    const newHistory = {
+      id: currentHistoryId || Date.now().toString(),
+      chatbotId: id,
+      name: historyName,
+      messages: messages,
+      createdAt: currentHistoryId ? chatHistories.find(h => h.id === currentHistoryId)?.createdAt : new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    const histories = JSON.parse(localStorage.getItem(`chatHistories_${id}`)) || [];
+    const existingIndex = histories.findIndex(h => h.id === newHistory.id);
+
+    if (existingIndex >= 0) {
+      histories[existingIndex] = newHistory;
+    } else {
+      histories.push(newHistory);
+    }
+
+    localStorage.setItem(`chatHistories_${id}`, JSON.stringify(histories));
+    setChatHistories(histories);
+    setCurrentHistoryId(newHistory.id);
+    setShowSaveDialog(false);
+    setHistoryName("");
+    alert("チャット履歴を保存しました。");
+  };
+
+  const loadHistory = (history) => {
+    setMessages(history.messages);
+    setCurrentHistoryId(history.id);
+    setHistoryName(history.name);
+    setShowHistoryList(false);
+  };
+
+  const deleteHistory = (historyId) => {
+    if (!window.confirm("この履歴を削除してもよろしいですか?")) {
+      return;
+    }
+
+    const histories = chatHistories.filter(h => h.id !== historyId);
+    localStorage.setItem(`chatHistories_${id}`, JSON.stringify(histories));
+    setChatHistories(histories);
+
+    if (currentHistoryId === historyId) {
+      setMessages([]);
+      setCurrentHistoryId(null);
+      setHistoryName("");
+    }
+  };
+
+  const startNewChat = () => {
+    setMessages([]);
+    setCurrentHistoryId(null);
+    setHistoryName("");
+  };
+
   return (
     <div className="chat-container">
       <div className="chat-header">
         <img src={userIcon} alt="User Icon" />
-        <h2>会話 {chatbot.name}</h2>
+        <h2>会話 {chatbot.name} {currentHistoryId && historyName && `- ${historyName}`}</h2>
         <div className="chat-info">
+          <button onClick={startNewChat} className="nav-button">
+            新規チャット
+          </button>
+          <button onClick={handleSaveHistory} className="nav-button">
+            履歴を保存
+          </button>
+          <button onClick={() => setShowHistoryList(!showHistoryList)} className="nav-button">
+            {showHistoryList ? "履歴を閉じる" : "履歴を開く"}
+          </button>
           <Link to={`/chatbot-detail/${id}`} className="nav-button">
             設定する
           </Link>
@@ -129,6 +218,61 @@ const ChatbotUse = () => {
           <img src={sendIcon} alt="Send" className="icon" />
         </button>
       </div>
+
+      {showSaveDialog && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3>チャット履歴を保存</h3>
+            <input
+              type="text"
+              value={historyName}
+              onChange={(e) => setHistoryName(e.target.value)}
+              placeholder="履歴の名前を入力してください"
+              className="history-name-input"
+            />
+            <div className="modal-buttons">
+              <button onClick={saveHistory} className="save-button">
+                保存
+              </button>
+              <button onClick={() => {
+                setShowSaveDialog(false);
+                setHistoryName("");
+              }} className="cancel-button">
+                キャンセル
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showHistoryList && (
+        <div className="history-sidebar">
+          <h3>保存された履歴</h3>
+          {chatHistories.length === 0 ? (
+            <p className="no-history">保存された履歴がありません</p>
+          ) : (
+            <ul className="history-list">
+              {chatHistories.map((history) => (
+                <li key={history.id} className="history-item">
+                  <div className="history-info">
+                    <strong>{history.name}</strong>
+                    <small>{new Date(history.updatedAt).toLocaleString()}</small>
+                  </div>
+                  <div className="history-actions">
+                    <button onClick={() => loadHistory(history)} className="load-button">
+                      読み込む
+                    </button>
+                    <button onClick={() => deleteHistory(history.id)} className="delete-button">
+                      削除
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+
       <div className="button-group"></div>
     </div>
   );
