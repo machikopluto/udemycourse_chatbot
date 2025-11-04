@@ -508,9 +508,17 @@ table tr:hover {
 }
 
 
+/* チャットレイアウト（サイドバー + チャットコンテナ） */
+.chat-layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
 .chat-container {
     display: flex;
     flex-direction: column;
+    flex: 1;
     height: 100vh;
     background-color: #f4f6f8;
 }
